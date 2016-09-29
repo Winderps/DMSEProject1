@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seng201ProjectOne
+namespace DMSE_Project_201
 {
     class Display
     {
@@ -27,17 +27,17 @@ namespace Seng201ProjectOne
 
         public void DisplayStudentInfo(ref Student student)
         {
-            Console.WriteLine("\nStudentID: {0}", student.Id);
+            Console.WriteLine("\nStudentID: {0}", student.ID);
             Console.WriteLine("StudentFirstName: {0}", student.FirstName);
             Console.WriteLine("StudentLastName: {0}", student.LastName);
-            Console.WriteLine("CourseID: {0}", student.CourseId);
+            /*Console.WriteLine("CourseID: {0}", student.CourseId);
             Console.WriteLine("CourseNumber: {0}", student.CourseNumber);
             Console.WriteLine("CourseName: {0}", student.CourseName);
             Console.WriteLine("Credit: {0}", student.Credits);
             Console.WriteLine("Semester: {0}", student.Semester);
             Console.WriteLine("Year: {0}", student.Year);
             Console.WriteLine("CourseType: {0}", student.CourseType);
-            Console.WriteLine("CourseGrade: {0}", student.CourseGrade);
+            Console.WriteLine("CourseGrade: {0}", student.CourseGrade);*/
         }
     }
 }
