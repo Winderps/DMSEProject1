@@ -8,9 +8,10 @@ namespace DMSE_Project_201
 {
     class Display
     {
-            public void DisplayInfo(string test)
-            {
-                Console.WriteLine(test);
-            }
+        public void DisplayInfo(string test)
+        {
+            Console.WriteLine(test);
+            Console.WriteLine(test);
+        }
     }
 }
