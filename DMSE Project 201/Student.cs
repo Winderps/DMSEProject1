@@ -31,7 +31,7 @@ namespace DMSE_Project_201
 
         public static Student Generate(string gender)
         {
-            return new Student(GetName("M"), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), (new List<Course>()).Add(Course.Generate()));
+            return new Student(GetName(gender), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), (new List<Course>()).Add(Course.Generate()));
         }
 
         static public string GetName(string gender)
@@ -46,11 +46,7 @@ namespace DMSE_Project_201
                     throw new ArgumentException("Argument is not a gender!", "gender");
             }
         }
-
-        //public int MyProperty { get; set; }
     }
-
-
 }
     
 
