@@ -25,7 +25,7 @@ namespace DMSE_Project_201
             return input;
         }
 
-        public void DisplayStudentInfo(ref Student student)
+        public static void DisplayStudentInfo(ref Student student)
         {
             Console.WriteLine("\nStudentID: {0}", student.ID);
             Console.WriteLine("StudentFirstName: {0}", student.FirstName);

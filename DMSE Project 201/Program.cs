@@ -13,7 +13,19 @@ namespace DMSE_Project_201
     {
         static void Main(string[] args)
         {
-            Student bob = Student.Generate("M");
+            if (args.Length > 0)
+            {
+                if (args[0] == "create")
+                {
+                    Student[] students = new Student[10];
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Student s = Student.Generate("M");
+                        students[i] = s;
+                    }
+
+                }
+            }
         }
     }
 }

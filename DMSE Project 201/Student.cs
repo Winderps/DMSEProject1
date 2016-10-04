@@ -31,7 +31,9 @@ namespace DMSE_Project_201
 
         public static Student Generate(string gender)
         {
-            return new Student(GetName(gender), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), (new List<Course>()).Add(Course.Generate()));
+            List<Course> c = new List<Course>();
+            c.Add(Course.Generate());
+            return new Student(GetName("M"), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), c);
         }
 
         static public string GetName(string gender)
@@ -48,5 +50,5 @@ namespace DMSE_Project_201
         }
     }
 }
-    
+
 
