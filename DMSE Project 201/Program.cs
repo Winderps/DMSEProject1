@@ -23,7 +23,21 @@ namespace DMSE_Project_201
                         Student s = Student.Generate("M");
                         students[i] = s;
                     }
-
+                    JsonSerializer js = new JsonSerializer();
+                    StreamWriter sw = new StreamWriter("data.json");
+                    js.Serialize(sw, students);
+                    sw.Flush();
+                    sw.Close();
+                }
+            }
+            else
+            {
+                if (File.Exists("data.json"))
+                {
+                    JsonSerializer js = new JsonSerializer();
+                    JsonReader sr = new JsonTextReader(new StreamReader("data.json"));
+                    Student[] students = js.Deserialize<Student[]>(sr);
+                    //ready to accept user input
                 }
             }
         }
