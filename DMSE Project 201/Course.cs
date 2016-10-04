@@ -42,11 +42,11 @@ namespace DMSE_Project_201
 
         static List<int> ids = new List<int>();
 
-        static int IdScope; //Scope of IDs, to ensure no duplicates
-
-        static int loop = 0;
+        static Random rnd = new Random();
 
         static int holdId; //Holds Id for reference
+
+        static int scope = 0;
 
 
 
@@ -64,45 +64,45 @@ namespace DMSE_Project_201
 
         public static Course Generate() //Generates Course
         {
-            Options();
             return new Course(RandomId(), IdToName(holdId), holdId, Convert.ToString((int)(new Random()).Next(1, 6)), semesters[(int)(new Random()).Next(0, 4)], 
                 Convert.ToString((int)(new Random()).Next(1, 7)), IdToType(holdId), grades[(int)(new Random()).Next(0, 7)]);
         }
 
+        static public void ManageData()
+        {
+            Options();
+        }
+
         static int RandomId() //Get random ID and returns it.
         {
-            holdId = ids[(int)(new Random()).Next(0, IdScope)];
+            holdId = ids[(int)(rnd).Next(0, scope)];
             return holdId;
+            
         }
 
         static void Options() //Creates Classes Id's, Semester and Grades
         {
-            //Clears leftover data
             ids.Clear();
+            scope = 12;
 
-            //defines starting scope, Prevents duplicate Courses
-            IdScope = 12;
+                //Core
+                ids.Add(1300);       //Id's Must be Unique for each class
+                ids.Add(1310);
+                ids.Add(1320);
+                ids.Add(1330);
 
-            //Core
-            ids.Add(1300);       //Id's Must be Unique for each class
-            ids.Add(1310);
-            ids.Add(1320);
-            ids.Add(1330);
+                //General Elective
+                ids.Add(1500);
+                ids.Add(1600);
+                ids.Add(1700);
+                ids.Add(1800);
 
-            //General Elective
-            ids.Add(1500);
-            ids.Add(1600);
-            ids.Add(1700);
-            ids.Add(1800);
+                //Electives
+                ids.Add(1200);
+                ids.Add(1210);
+                ids.Add(1220);
+                ids.Add(1230);
 
-            //Electives
-            ids.Add(1200);
-            ids.Add(1210);
-            ids.Add(1220);
-            ids.Add(1230);
-
-            if (loop == 0)
-            {
                 //Semesters
                 semesters.Add("Spring");
                 semesters.Add("Summer");
@@ -119,14 +119,13 @@ namespace DMSE_Project_201
                 grades.Add("W");
 
                 //Stops from repeating steps
-                loop = 1;
-            }
         }
 
         static public string IdToName(int id) //Uses ID to assign appropriate class name
         {
             ids.Remove(id);
-            --IdScope;
+            --scope;
+
             switch (id)
             {
                 case 1300:

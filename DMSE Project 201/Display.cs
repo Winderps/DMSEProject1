@@ -11,8 +11,9 @@ namespace DMSE_Project_201
         int counter = 1;
         int inputStudent;
         int inputCourse;
+        Student ;
 
-        public void DisplayNames(Array students)
+        public void DisplayNames(Student[] students)
         {
             foreach (Student student in students)
             {
@@ -25,17 +26,20 @@ namespace DMSE_Project_201
         {
             Console.Write("\nChoose a students information to view: ");
             inputStudent = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
 
             return inputStudent;
         }
 
         public void DisplayCourses(Student student)  //Method call (*Array: Student[input])
         {
+            counter = 1;
             foreach (Course course in student.Courses)
             {
                 Console.WriteLine("{0}) {1}", counter, course.Name);
                 counter++;
             }
+            
         }
 
         public int PromptUserCourses()
@@ -46,24 +50,24 @@ namespace DMSE_Project_201
             return inputCourse;
         }
         
-           static public Course GetCourse(List<Course> CourseList, int course)
+        public Course GetCourse(List<Course> CourseList, int course)
         {
             return CourseList[course];
         }
 
-        public static void DisplayStudentInfo(ref Student student, ref Course course)
+        public void DisplayStudentInfo(ref Student student, ref Course course)
         {
             Console.WriteLine("\nStudentID: {0}", student.ID);
             Console.WriteLine("StudentFirstName: {0}", student.FirstName);
             Console.WriteLine("StudentLastName: {0}", student.LastName);
-            /*Console.WriteLine("CourseID: {0}", student.CourseId);
-            Console.WriteLine("CourseNumber: {0}", student.CourseNumber);
-            Console.WriteLine("CourseName: {0}", student.CourseName);
-            Console.WriteLine("Credit: {0}", student.Credits);
-            Console.WriteLine("Semester: {0}", student.Semester);
-            Console.WriteLine("Year: {0}", student.Year);
-            Console.WriteLine("CourseType: {0}", student.CourseType);
-            Console.WriteLine("CourseGrade: {0}", student.CourseGrade);*/
+            Console.WriteLine("CourseID: {0}", course.ID);
+            Console.WriteLine("CourseNumber: {0}", course.Number);
+            Console.WriteLine("CourseName: {0}", course.Name);
+            Console.WriteLine("Credit: {0}", course.Credit);
+            Console.WriteLine("Semester: {0}", course.Semster);
+            Console.WriteLine("Year: {0}", course.Year);
+            Console.WriteLine("CourseType: {0}", course.CourseType);
+            Console.WriteLine("CourseGrade: {0}", course.Grade);
         }
      
     }

@@ -32,7 +32,12 @@ namespace DMSE_Project_201
         public static Student Generate(string gender)
         {
             List<Course> c = new List<Course>();
-            c.Add(Course.Generate());
+            Course.ManageData();
+            for (int i = 0; i < 4; i++)
+            {
+                c.Add(Course.Generate());
+            }
+
             return new Student(GetName("M"), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), c);
         }
 
