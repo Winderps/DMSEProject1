@@ -7,18 +7,18 @@ using RandomNameGenerator;
 
 namespace DMSE_Project_201
 {
-    struct Student
+    public struct Student
     {
-        public string FirstName { get { return _firstName; } }
+        public string FirstName { get { return _firstName; } set { _firstName = value; } }
         private string _firstName;
 
-        public string LastName { get { return _lastName; } }
+        public string LastName { get { return _lastName; } set { _lastName = value; } }
         private string _lastName;
 
-        public string ID { get { return _id.ToString("0-00-000"); } }
+        public string ID { get { return _id.ToString("0-00-000"); } set { _id = uint.Parse(value.Replace("-", "")); } }
         private uint _id;
 
-        public List<Course> Courses { get { return _courses; } }
+        public List<Course> Courses { get { return _courses; } set { _courses = value; } }
         List<Course> _courses;
 
         public Student(string first, string last, uint id, List<Course> courses)
@@ -38,7 +38,7 @@ namespace DMSE_Project_201
                 c.Add(Course.Generate());
             }
 
-            return new Student(GetName("M"), NameGenerator.GenerateLastName(), (uint)(new Random()).Next(999999), c);
+            return new Student(GetName("M"), NameGenerator.GenerateLastName(), Program.currentID++, c);
         }
 
         static public string GetName(string gender)

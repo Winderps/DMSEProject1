@@ -11,15 +11,15 @@ namespace DMSE_Project_201
         int counter = 1;
         int inputStudent;
         int inputCourse;
-        Student ;
 
         public void DisplayNames(Student[] students)
         {
             foreach (Student student in students)
             {
-                Console.WriteLine("{0}) {1} {2}", counter, student.FirstName, student.LastName);
+                Console.WriteLine("{0}) {1} {2} - {3}", counter, student.FirstName, student.LastName, student.ID);
                 counter++;
             }
+            DisplayCourses(students[PromptUserStudents()-1]);
         }
 
         public int PromptUserStudents()
@@ -34,12 +34,15 @@ namespace DMSE_Project_201
         public void DisplayCourses(Student student)  //Method call (*Array: Student[input])
         {
             counter = 1;
+            Console.WriteLine("StudentID: " + student.ID);
+            Console.WriteLine("First Name: " + student.FirstName);
+            Console.WriteLine("Last Name: " + student.LastName);
             foreach (Course course in student.Courses)
             {
                 Console.WriteLine("{0}) {1}", counter, course.Name);
                 counter++;
             }
-            
+            DisplayStudentInfo(student, student.Courses[PromptUserCourses()-1]);
         }
 
         public int PromptUserCourses()
@@ -55,11 +58,8 @@ namespace DMSE_Project_201
             return CourseList[course];
         }
 
-        public void DisplayStudentInfo(ref Student student, ref Course course)
+        public void DisplayStudentInfo(Student student, Course course)
         {
-            Console.WriteLine("\nStudentID: {0}", student.ID);
-            Console.WriteLine("StudentFirstName: {0}", student.FirstName);
-            Console.WriteLine("StudentLastName: {0}", student.LastName);
             Console.WriteLine("CourseID: {0}", course.ID);
             Console.WriteLine("CourseNumber: {0}", course.Number);
             Console.WriteLine("CourseName: {0}", course.Name);
@@ -69,7 +69,5 @@ namespace DMSE_Project_201
             Console.WriteLine("CourseType: {0}", course.CourseType);
             Console.WriteLine("CourseGrade: {0}", course.Grade);
         }
-     
     }
 }
-

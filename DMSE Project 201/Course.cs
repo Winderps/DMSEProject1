@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace DMSE_Project_201
 {
-    struct Course
+    public struct Course
     {
-        public int ID { get { return _id; } }
+        public int ID { get { return _id; } set { _id = value; } }
         private int _id;
 
-        public string Name { get { return _name; } }
+        public string Name { get { return _name; } set { _name = value; } }
         private string _name;
 
-        public string Number { get { return Name.Remove(4).ToUpper() + "-" + _number.ToString("0000"); } }
+        public string Number { get { return (Name.Length > 4 ? Name.Remove(4).ToUpper() : Name) + "-" + _number.ToString("0000"); } set { _number = int.Parse(value.Split('-')[1]); } }
         private int _number;
 
-        public string Credit { get { return "0" + Convert.ToString(_credit); } }
+        public string Credit { get { return int.Parse(_credit).ToString("00"); } set { _credit = value; } }
         private string _credit;
 
-        public string Semster { get { return _semester; } }
+        public string Semster { get { return _semester; } set { _semester = value; } }
         private string _semester;
 
-        public string Year { get { return "201" + _year; } }
+        public string Year { get { return "201" + _year; } set { _year = (int.Parse(value)-2010).ToString(); } }
         private string _year;
 
-        public string CourseType { get { return _courseType; } }
+        public string CourseType { get { return _courseType; } set { _courseType = value; } }
         private string _courseType;
 
-        public string Grade { get { return _grade; } }
+        public string Grade { get { return _grade; } set { _grade = value; } }
         private string _grade;
 
         static List<string> names = new List<string>();     //Lists holds avaliable values for assigning
@@ -47,8 +47,6 @@ namespace DMSE_Project_201
         static int holdId; //Holds Id for reference
 
         static int scope = 0;
-
-
 
         public Course(int id, string name, int number, string credit, string semester, string year, string courseType, string grade) //Course Contructor
         {
