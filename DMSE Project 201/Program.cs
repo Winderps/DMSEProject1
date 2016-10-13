@@ -19,11 +19,17 @@ namespace DMSE_Project_201
         {
             if (File.Exists("data.json"))
             {
+                //read in student data from data.json
                 StreamReader sr = new StreamReader("data.json");
                 Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
+                //prepare variables to handle user input
                 string input = "";
                 string[] inputSplit = { "" };
+                //prepare display class to display user info
                 Display d = new Display();
+                //Show help dialog
+                Console.WriteLine("To lookup a student, type lookup [lastname] (not case sensitive). To view the list of students, use lookup all.");
+                Console.WriteLine("Enter help to display this help dialog");
                 while (inputSplit[0] != "exit")
                 {
                     Console.Write(">");
@@ -31,38 +37,60 @@ namespace DMSE_Project_201
                     inputSplit = input.Split(' ');
                     switch (inputSplit[0])
                     {
+                        //Show help dialog
                         case "help":
-
+                            Console.WriteLine("To lookup a student, type lookup [lastname] (not case sensitive). To view the list of students, use lookup all.");
                             break;
                         case "lookup":
-
+                            if (inputSplit.Count() > 0)
+                            {
+                                //Show all students
+                                if (inputSplit[1] == "all")
+                                    d.DisplayNames(students);
+                                else
+                                {
+                                    //lookup a student via LastName (case-insenitive)
+                                    var s = students.Where(st => st.LastName.ToLower().Contains(inputSplit[1].ToLower()));
+                                    if (s.Count() > 1)
+                                        d.DisplayNames(s.ToArray());
+                                    else if (s.Count() > 0)
+                                        d.DisplayCourses(s.FirstOrDefault());
+                                    else
+                                        Console.WriteLine("Could not find any students matching that last name. Please try again.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please specify a last name!");
+                            }
                             break;
+                            //Exit the program.
                         case "exit":
                             break;
                         default:
-                            object result = execLINQ(input, students.ToList());
-                            Type t = result.GetType().GenericTypeArguments.FirstOrDefault();
-                            if (t.Equals(typeof(Student)))
-                            {
-                                IEnumerable<Student> returned = ((IEnumerable<Student>)result);
-                                if (returned.Count() > 1)
-                                {
-                                    d.DisplayNames(returned.ToArray());
-                                }
-                                else
-                                {
-                                    d.DisplayCourses(returned.FirstOrDefault());
-                                }
-                                
-                            }
-                            else if (t.Equals(typeof(Course)))
-                            {
+                            //default to using custom LINQ queries. Probably best to avoid messing with this.
 
-                            }
-                            /*if (result.Count() < 2)
+                            //Execute the user's input as a LINQ query. (Example LastName = "X" OR LastName.Contains("X"))
+                            object result = execLINQ(input, students.ToList());
+                            IEnumerable<Student> returned = ((IEnumerable<Student>)result);
+                            if (returned.Count() > 1)
                             {
-                                d.DisplayStudentInfo(result.FirstOrDefault());
-                            }*/
+                                //If more than one student matches, let the user pick
+                                d.DisplayNames(returned.ToArray());
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    //If only one student matches, display their info.
+                                    d.DisplayCourses(returned.First());
+                                }
+                                catch
+                                {
+                                    //if zero students are returned, tell the user.
+                                    Console.WriteLine("Sorry! Couldn't find any students matching that query!");
+                                }
+                            }
                             break;
                     }
                 }
@@ -85,7 +113,15 @@ namespace DMSE_Project_201
         public static IEnumerable<Student> execLINQ(string input, List<Student> students)
         {
             //students[0].Courses.Any("ID = 1200");
-            return students.Where(input, students.ToArray());
+            try
+            {
+                return students.Where(input, students.ToArray());
+            }
+            catch
+            {
+                Console.WriteLine("Oops! That query didn't look quite right! Please try again!");
+                return students.Where("LastName = \"ZZZZZZZ\"", students.ToArray());
+            }
             //Console.WriteLine(DynamicExpression.ParseLambda<Student, bool>(input, students).Compile().Invoke(students.ToArray()));
             
             //return CSharpScript.EvaluateAsync(input, ScriptOptions.Default.WithReferences(typeof(System.Linq.Queryable).Assembly).WithImports("System.Linq", "System.Collections.Generic"), globals: globals).Result;
