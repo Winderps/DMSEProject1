@@ -64,13 +64,15 @@ namespace DMSE_Project_201
                                 Console.WriteLine("Please specify a last name!");
                             }
                             break;
-                            //Exit the program.
+                        //Exit the program.
                         case "exit":
                             break;
                         default:
                             //default to using custom LINQ queries. Probably best to avoid messing with this.
 
                             //Execute the user's input as a LINQ query. (Example LastName = "X" OR LastName.Contains("X"))
+                            //Fields used can be any field in the Student type. Then any of their fields and methods can be used as well.
+                            //FirstName.Contains(), FirstName.StartsWith(), etc.
                             object result = execLINQ(input, students.ToList());
                             IEnumerable<Student> returned = ((IEnumerable<Student>)result);
                             if (returned.Count() > 1)
@@ -128,7 +130,7 @@ namespace DMSE_Project_201
         }
         
     }
-    public class Globals
+    /*public class Globals
     {
         public List<Student> s;
         public Globals(List<Student> students)
@@ -136,6 +138,6 @@ namespace DMSE_Project_201
             s = students;
         }
 
-    }
+    }*/
 }
 
