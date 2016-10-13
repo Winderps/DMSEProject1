@@ -8,6 +8,7 @@ namespace DMSE_Project_201
 {
     public struct Course
     {
+        //Each value has two variables, one private and one public accessor.
         public int ID { get { return _id; } set { _id = value; } }
         private int _id;
 

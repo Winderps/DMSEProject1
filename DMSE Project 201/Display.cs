@@ -24,8 +24,19 @@ namespace DMSE_Project_201
 
         public int PromptUserStudents()
         {
-            Console.Write("\nChoose a students information to view: ");
-            inputStudent = Convert.ToInt32(Console.ReadLine());
+            while(true)
+            {
+                try
+                {
+                    Console.Write("\nChoose a students information to view: ");
+                    inputStudent = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("That is not a number!");
+                }
+            }
             Console.WriteLine();
 
             return inputStudent;
@@ -43,12 +54,26 @@ namespace DMSE_Project_201
                 counter++;
             }
             DisplayStudentInfo(student, student.Courses[PromptUserCourses()-1]);
+            counter = 1;
         }
 
         public int PromptUserCourses()
         {
-            Console.WriteLine("\nChoose which course you would like to view: ");
-            inputCourse = Convert.ToInt32(Console.ReadLine());
+            
+
+            while (true)
+            {
+                try
+                {
+                    Console.Write("\nChoose which course you would like to view: ");
+                    inputCourse = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("That is not a number!");
+                }
+            }
 
             return inputCourse;
         }
