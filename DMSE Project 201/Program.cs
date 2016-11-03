@@ -12,6 +12,20 @@ using Microsoft.CodeAnalysis.Scripting;
 
 namespace DMSE_Project_201
 {
+
+    // Course & Student -> DmseProject201.Core
+    // Some logic from program -> DmseProject201.Core
+    // New Stuff -> DmseProject201.Gui
+
+    // text box -> student ID
+    // labels -> Student Info
+    // data grid view -> Course Info
+    // other labels -> Course summary info
+
+    // Program -> Application (Contains methods like FindStudentById())
+    //         -> DataService (Contains methods like LoadStudents())
+    // (removing unusable code) + (some code that we might want)
+
     class Program
     {
         public static ushort currentID = 0;
@@ -20,6 +34,8 @@ namespace DMSE_Project_201
             if (File.Exists("data.json"))
             {
                 //read in student data from data.json
+                // TODO: Convert these two lines below into a DataService class that can handle
+                // loading the JSON for us.
                 StreamReader sr = new StreamReader("data.json");
                 Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
                 //prepare variables to handle user input
@@ -99,6 +115,7 @@ namespace DMSE_Project_201
             }
             else
             {
+                // TODO: Convert into a method in the new DataService class named something like "CreateAppData()".
                 Student[] students = new Student[10];
                 for (int i = 0; i < 10; i++)
                 {
@@ -125,10 +142,10 @@ namespace DMSE_Project_201
                 return students.Where("LastName = \"ZZZZZZZ\"", students.ToArray());
             }
             //Console.WriteLine(DynamicExpression.ParseLambda<Student, bool>(input, students).Compile().Invoke(students.ToArray()));
-            
+
             //return CSharpScript.EvaluateAsync(input, ScriptOptions.Default.WithReferences(typeof(System.Linq.Queryable).Assembly).WithImports("System.Linq", "System.Collections.Generic"), globals: globals).Result;
         }
-        
+
     }
     /*public class Globals
     {
