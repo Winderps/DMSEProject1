@@ -66,6 +66,10 @@ namespace DMSE_Project_201
                                 else
                                 {
                                     //lookup a student via LastName (case-insenitive)
+                                    // TODO: Convert to a method in the Application class
+                                    // TODO: Change to search by student ID instead of last name
+                                    // TODO: Change to take the first student from the list instead of finding all
+                                    //       students that match the given ID.
                                     var s = students.Where(st => st.LastName.ToLower().Contains(inputSplit[1].ToLower()));
                                     if (s.Count() > 1)
                                         d.DisplayNames(s.ToArray());
