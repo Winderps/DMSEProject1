@@ -11,10 +11,12 @@ namespace Dmse_Project_201.Core
 {
     public class Logic //decisions
     {
-        public void LoadStudentFromJson()
+        public Student[] LoadStudentFromJson()
         {
             StreamReader sr = new StreamReader("data.json");
             Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
+
+            return students;
         }
 
         public void CreateJson()
