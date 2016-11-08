@@ -43,6 +43,7 @@ namespace DMSE_Project_201.Core
             return new Student(GetName("M"), NameGenerator.GenerateLastName(), currentID++, c);
         }
 
+
         static public string GetName(string gender)
         {
             switch (gender)

@@ -32,11 +32,11 @@ namespace Dmse_Project_201.Core
             sw.Close();
         }
 
-        public Student[] SearchByID(Student[] student, string ID)
+        public Student SearchByID(Student[] student, string ID)
         {
-            var s = student.Where(st => st.ID.Contains(ID));
+            var s = student.FirstOrDefault(st => st.ID.Contains(ID));
 
-            return s.ToArray();
+            return s;
         }
 
 
