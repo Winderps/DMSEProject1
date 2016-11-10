@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DMSE_Project_201.Core
 {
-    public struct Student
+    public class Student
     {
         private static uint currentID;
 
@@ -17,8 +17,8 @@ namespace DMSE_Project_201.Core
         public string LastName { get { return _lastName; } set { _lastName = value; } }
         private string _lastName;
 
-        public string ID { get { return _id.ToString("0-00-000"); } set { _id = uint.Parse(value.Replace("-", "")); } }
-        private uint _id;
+        public string ID { get { return _id; } set { _id = value; } }
+        private string _id;
 
         public List<Course> Courses { get { return _courses; } set { _courses = value; } }
         List<Course> _courses;
@@ -27,9 +27,19 @@ namespace DMSE_Project_201.Core
         {
             _firstName = first;
             _lastName = last;
+            _id = id.ToString("0-00-000");
+            _courses = courses;
+        }
+
+        public Student(string first, string last, string id, List<Course> courses)
+        {
+            _firstName = first;
+            _lastName = last;
             _id = id;
             _courses = courses;
         }
+
+        public Student() { }
 
         public static Student Generate(string gender)
         {

@@ -13,6 +13,11 @@ namespace Dmse_Project_201.Core
     {
         public Student[] LoadStudentFromJson()
         {
+            if (!File.Exists("data.json"))
+            {
+                CreateJson();
+            }
+
             StreamReader sr = new StreamReader("data.json");
             Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
 
@@ -42,7 +47,14 @@ namespace Dmse_Project_201.Core
         }
 
 
-
+        public double PercentComplete(IEnumerable<Course> courses)
+        {
+            var incompleteGrades = new[] { "F", "W", "I" };
+            return courses
+                .Select(c => incompleteGrades.Contains(c.Grade) ? 0 : 100)
+                .DefaultIfEmpty()
+                .Average(c => c);
+        }
 
 
 
