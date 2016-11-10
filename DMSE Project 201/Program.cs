@@ -34,7 +34,7 @@ namespace DMSE_Project_201
             if (File.Exists("data.json"))
             {
                 //read in student data from data.json
-                // TODO: Convert these two lines below into a DataService class that can handle
+
                 // loading the JSON for us.
                 StreamReader sr = new StreamReader("data.json");
                 Student[] students = JsonConvert.DeserializeObject<Student[]>(sr.ReadToEnd());
@@ -66,10 +66,9 @@ namespace DMSE_Project_201
                                 else
                                 {
                                     //lookup a student via LastName (case-insenitive)
-                                    // TODO: Convert to a method in the Application class
-                                    // TODO: Change to search by student ID instead of last name
-                                    // TODO: Change to take the first student from the list instead of finding all
-                                    //       students that match the given ID.
+
+ 
+
                                     var s = students.Where(st => st.LastName.ToLower().Contains(inputSplit[1].ToLower()));
                                     if (s.Count() > 1)
                                         d.DisplayNames(s.ToArray());
@@ -119,7 +118,7 @@ namespace DMSE_Project_201
             }
             else
             {
-                // TODO: Convert into a method in the new DataService class named something like "CreateAppData()".
+                
                 Student[] students = new Student[10];
                 for (int i = 0; i < 10; i++)
                 {
