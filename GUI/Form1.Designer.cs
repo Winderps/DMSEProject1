@@ -61,7 +61,9 @@
             // 
             // TXTBuserinput
             // 
-            this.TXTBuserinput.Location = new System.Drawing.Point(222, 17);
+            this.TXTBuserinput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TXTBuserinput.Location = new System.Drawing.Point(219, 21);
             this.TXTBuserinput.Margin = new System.Windows.Forms.Padding(6);
             this.TXTBuserinput.Name = "TXTBuserinput";
             this.TXTBuserinput.Size = new System.Drawing.Size(372, 31);
@@ -70,6 +72,7 @@
             // 
             // BTNsearch
             // 
+            this.BTNsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BTNsearch.Location = new System.Drawing.Point(610, 17);
             this.BTNsearch.Margin = new System.Windows.Forms.Padding(6);
             this.BTNsearch.Name = "BTNsearch";
@@ -135,6 +138,9 @@
             // 
             // DGCourses
             // 
+            this.DGCourses.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGCourses.Location = new System.Drawing.Point(30, 192);
             this.DGCourses.Margin = new System.Windows.Forms.Padding(6);
@@ -144,6 +150,8 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(256, 790);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -154,6 +162,8 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(28, 844);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -164,6 +174,8 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(234, 844);
             this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -174,6 +186,8 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(448, 844);
             this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -184,6 +198,8 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(664, 844);
             this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -194,6 +210,8 @@
             // 
             // LBLoverall
             // 
+            this.LBLoverall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LBLoverall.AutoSize = true;
             this.LBLoverall.Location = new System.Drawing.Point(664, 917);
             this.LBLoverall.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -204,6 +222,8 @@
             // 
             // LBLelective
             // 
+            this.LBLelective.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LBLelective.AutoSize = true;
             this.LBLelective.Location = new System.Drawing.Point(448, 917);
             this.LBLelective.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -214,6 +234,8 @@
             // 
             // LCLgened
             // 
+            this.LCLgened.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LCLgened.AutoSize = true;
             this.LCLgened.Location = new System.Drawing.Point(234, 917);
             this.LCLgened.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -224,6 +246,8 @@
             // 
             // LBLcore
             // 
+            this.LBLcore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LBLcore.AutoSize = true;
             this.LBLcore.Location = new System.Drawing.Point(28, 917);
             this.LBLcore.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
