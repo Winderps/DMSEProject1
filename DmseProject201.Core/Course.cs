@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMSE_Project_201
+namespace DMSE_Project_201.Core
 {
     public struct Course
     {
@@ -63,8 +63,8 @@ namespace DMSE_Project_201
 
         public static Course Generate() //Generates Course
         {
-            return new Course(RandomId(), IdToName(holdId), holdId, Convert.ToString((int)(new Random()).Next(1, 6)), semesters[(int)(new Random()).Next(0, 4)], 
-                Convert.ToString((int)(new Random()).Next(1, 7)), IdToType(holdId), grades[(int)(new Random()).Next(0, 7)]);
+            return new Course(RandomId(), IdToName(holdId), holdId, Convert.ToString((int)(rnd).Next(1, 6)), semesters[(int)(rnd).Next(0, 4)], 
+                Convert.ToString((int)(rnd).Next(1, 7)), IdToType(holdId), grades[(int)(rnd).Next(0, 7)]);
         }
 
         static public void ManageData()

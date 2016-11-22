@@ -1,22 +1,24 @@
-﻿using System;
+﻿using RandomNameGenerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RandomNameGenerator;
 
-namespace DMSE_Project_201
+namespace DMSE_Project_201.Core
 {
-    public struct Student
+    public class Student
     {
+        private static uint currentID;
+
         public string FirstName { get { return _firstName; } set { _firstName = value; } }
         private string _firstName;
 
         public string LastName { get { return _lastName; } set { _lastName = value; } }
         private string _lastName;
 
-        public string ID { get { return _id.ToString("0-00-000"); } set { _id = uint.Parse(value.Replace("-", "")); } }
-        private uint _id;
+        public string ID { get { return _id; } set { _id = value; } }
+        private string _id;
 
         public List<Course> Courses { get { return _courses; } set { _courses = value; } }
         List<Course> _courses;
@@ -25,9 +27,19 @@ namespace DMSE_Project_201
         {
             _firstName = first;
             _lastName = last;
+            _id = id.ToString("0-00-000");
+            _courses = courses;
+        }
+
+        public Student(string first, string last, string id, List<Course> courses)
+        {
+            _firstName = first;
+            _lastName = last;
             _id = id;
             _courses = courses;
         }
+
+        public Student() { }
 
         public static Student Generate(string gender)
         {
@@ -38,8 +50,9 @@ namespace DMSE_Project_201
                 c.Add(Course.Generate());
             }
 
-            return new Student(GetName("M"), NameGenerator.GenerateLastName(), Program.currentID++, c);
+            return new Student(GetName("M"), NameGenerator.GenerateLastName(), currentID++, c);
         }
+
 
         static public string GetName(string gender)
         {
