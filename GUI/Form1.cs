@@ -16,6 +16,8 @@ namespace GUI
     {
         private Logic logic = new Logic();
         private Student[] students;
+        private Graph graphForm = new Graph();
+        private int[] graphGrades = new int[7];
         public Form1()
         {
             InitializeComponent();
@@ -51,6 +53,55 @@ namespace GUI
             LBLoverall.Text = logic.PercentComplete(student.Courses).ToString();
 
             DGCourses.DataSource = student.Courses;
+        }
+
+        private void OpenGraph()
+        {
+            
+        }
+
+        private void btnGraph_Click(object sender, EventArgs e)
+        {
+            Array.Clear(graphGrades, 0, graphGrades.Length);
+            var id = TXTBuserinput.Text;
+            var student = logic.SearchByID(students, id);
+            if (student != null)
+            {
+                foreach (Course course in student.Courses)
+                {
+                    switch (course.Grade)
+                    {
+                        case "A":
+                            graphGrades[0] += 1;
+                            break;
+                        case "B":
+                            graphGrades[1] += 1;
+                            break;
+                        case "C":
+                            graphGrades[2] += 1;
+                            break;
+                        case "D":
+                            graphGrades[3] += 1;
+                            break;
+                        case "F":
+                            graphGrades[4] += 1;
+                            break;
+                        case "I":
+                            graphGrades[5] += 1;
+                            break;
+                        case "W":
+                            graphGrades[6] += 1;
+                            break;
+                    }
+                }
+                graphForm.GraphStart(graphGrades[0], graphGrades[1], graphGrades[2], graphGrades[3], graphGrades[4], graphGrades[5], graphGrades[6], student.LastName);
+                graphForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
+            }
+
         }
     }
 }
