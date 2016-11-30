@@ -45,20 +45,51 @@ namespace GUI
 
         private void DisplayStudent(Student student)
         {
+            double numCore = 0.0;
+            double numGen = 0.0;
+            double numElective = 0.0;
+
+            foreach (Course course in student.Courses)
+            {
+                switch (course.CourseType)
+                {
+                    case "Core":
+                        if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                        {
+                            numCore++;
+                        }
+                        break;
+                    case "General Education":
+                        if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                        {
+                            numGen++;
+                        }
+                        break;
+                    case "Elective":
+                        if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                        {
+                            numElective++;
+                        }
+                        break;
+                }
+
+            }
+
             LBLname.Text = String.Format("{0} {1}", student.FirstName, student.LastName);
             LBLid.Text = student.ID;
-            LBLcore.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "Core")).ToString();
-            LBLelective.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "Elective")).ToString();
-            LCLgened.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "General Education")).ToString();
-            LBLoverall.Text = logic.PercentComplete(student.Courses).ToString();
+            LBLcore.Text = Math.Round((numCore / 26), 2).ToString();
+            LBLelective.Text = Math.Round((numElective / 8), 2).ToString();
+            LCLgened.Text = Math.Round((numGen / 8), 2).ToString();
+            LBLoverall.Text = Math.Round(((numCore + numGen + numElective) / 42), 2).ToString();
+
+            //LBLcore.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "Core")).ToString();
+            //LBLelective.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "Elective")).ToString();
+            //LCLgened.Text = logic.PercentComplete(student.Courses.Where(c => c.CourseType == "General Education")).ToString();
+            //LBLoverall.Text = logic.PercentComplete(student.Courses).ToString();
 
             DGCourses.DataSource = student.Courses;
         }
 
-        private void OpenGraph()
-        {
-            
-        }
 
         private void btnGraph_Click(object sender, EventArgs e)
         {
@@ -102,6 +133,52 @@ namespace GUI
                 MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
             }
 
+        }
+
+        private void btnPieChart_Click(object sender, EventArgs e)
+        {
+            double numCore = 0.0;
+            double numGen = 0.0;
+            double numElective = 0.0;
+            
+            var id = TXTBuserinput.Text;
+            var student = logic.SearchByID(students, id);
+            if (student != null)
+            {
+                foreach (Course course in student.Courses)
+                {
+                    switch (course.CourseType)
+                    {
+                        case "Core":
+                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                            {
+                                numCore++;
+                            }
+                            break;
+                        case "General Education":
+                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                            {
+                                numGen++;
+                            }
+                            break;
+                        case "Elective":
+                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                            {
+                                numElective++;
+                            }
+                            break;
+                    }
+
+                }
+                double numIncomplete = 42.0 - numCore - numGen - numElective;
+                graphForm.CreatePieChart(numCore/42, numGen/42, numElective/42, numIncomplete/42, student.LastName);
+                graphForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
+            }
+            
         }
     }
 }

@@ -47,6 +47,7 @@
             this.LCLgened = new System.Windows.Forms.Label();
             this.LBLcore = new System.Windows.Forms.Label();
             this.btnGraph = new System.Windows.Forms.Button();
+            this.btnPieChart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGCourses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -249,11 +250,22 @@
             this.btnGraph.UseVisualStyleBackColor = true;
             this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
             // 
+            // btnPieChart
+            // 
+            this.btnPieChart.Location = new System.Drawing.Point(198, 56);
+            this.btnPieChart.Name = "btnPieChart";
+            this.btnPieChart.Size = new System.Drawing.Size(100, 23);
+            this.btnPieChart.TabIndex = 18;
+            this.btnPieChart.Text = "Graph Completion";
+            this.btnPieChart.UseVisualStyleBackColor = true;
+            this.btnPieChart.Click += new System.EventHandler(this.btnPieChart_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 511);
+            this.Controls.Add(this.btnPieChart);
             this.Controls.Add(this.btnGraph);
             this.Controls.Add(this.LBLoverall);
             this.Controls.Add(this.LBLelective);
@@ -303,6 +315,7 @@
         private System.Windows.Forms.Label LCLgened;
         private System.Windows.Forms.Label LBLcore;
         private System.Windows.Forms.Button btnGraph;
+        private System.Windows.Forms.Button btnPieChart;
     }
 }
 

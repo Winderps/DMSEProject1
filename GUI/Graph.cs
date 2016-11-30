@@ -17,12 +17,18 @@ namespace GUI
         ChartTitle chartTitle1 = new ChartTitle();
         Series series1 = new Series("Series 1", ViewType.Bar);
 
+        ChartControl pieChartControl = new ChartControl();
+        ChartTitle pieChartTitle = new ChartTitle();
+        Series series2 = new Series("Series 2", ViewType.Pie);
+
+
         public Graph()
         {
             InitializeComponent();
         }
 
- 
+        #region BarGraph
+
         public void GraphStart(int A, int B, int C, int D, int F, int I, int W, string name)
         {
 
@@ -30,6 +36,8 @@ namespace GUI
             chartControl1.Series.Clear();
             chartControl1.Titles.Remove(chartTitle1);
             series1.Points.Clear();
+
+            ClearChart();
             
             // Create a bar series and add points to it.
 
@@ -48,8 +56,10 @@ namespace GUI
             chartControl1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
 
             // Set the scale type for the series' arguments and values.
-            //series1.ArgumentScaleType = ScaleType.DateTime;
+            //series1.ArgumentScaleType = ScaleType.Qualitative;
             series1.ValueScaleType = ScaleType.Numerical;
+
+            
 
             // Cast the chart's diagram to the XYDiagram type, to access its axes.
             XYDiagram diagram = chartControl1.Diagram as XYDiagram;
@@ -57,6 +67,14 @@ namespace GUI
             // Since the ValueScaleType of the chart's series is Numerical,
             // it is possible to customize the NumericOptions of Y-axis.
             diagram.AxisY.Label.TextPattern = "{V}";
+
+
+            //((XYDiagram)chartControl1.Diagram).AxisY.VisualRange.MinValue = 1;
+            //((XYDiagram)chartControl1.Diagram).AxisY.VisualRange.MaxValue = 6;
+
+            //diagram.AxisY.VisualRange.MinValue = 1;
+            //diagram.AxisY.VisualRange.MaxValue = 6
+
 
             // Add a title to the chart (if necessary).
             chartTitle1.Text = name + "'S GRADES";
@@ -122,6 +140,85 @@ namespace GUI
         //    chart.Dock = DockStyle.Fill;
         //    this.Controls.Add(chart);
         //}
+        #endregion
+
+        #region PieChart
+       
+        public void CreatePieChart(double corePercent, double genPercent, double electivePercent, double incompletePercent, string name)
+        {
+
+            pieChartControl.DataSource = null;
+            pieChartControl.Series.Clear();
+            pieChartControl.Titles.Remove(pieChartTitle);
+            series2.Points.Clear();
+
+            ClearChart();
+
+            // Populate the series with points.
+            series2.Points.Add(new SeriesPoint("Core", corePercent));
+            series2.Points.Add(new SeriesPoint("General Education", genPercent));
+            series2.Points.Add(new SeriesPoint("Elective", electivePercent));
+            series2.Points.Add(new SeriesPoint("Incomplete", incompletePercent));
+            
+
+            // Add the series to the chart.
+            pieChartControl.Series.Add(series2);
+
+            // Format the the series labels.
+            series2.Label.TextPattern = "{A}: {VP:p0}";
+
+            // Adjust the position of series labels. 
+            ((PieSeriesLabel)series2.Label).Position = PieSeriesLabelPosition.TwoColumns;
+
+            // Detect overlapping of series labels.
+            ((PieSeriesLabel)series2.Label).ResolveOverlappingMode = ResolveOverlappingMode.Default;
+
+            // Access the view-type-specific options of the series.
+            PieSeriesView myView = (PieSeriesView)series2.View;
+
+            // Show a title for the series.
+            //myView.Titles.Add(new SeriesTitle());
+            //myView.Titles[0].Text = "";
+
+            pieChartTitle.Text = name + "'S Completion";
+            pieChartControl.Titles.Add(pieChartTitle);
+
+            // Specify a data filter to explode points.
+            myView.ExplodedPointsFilters.Add(new SeriesPointFilter(SeriesPointKey.Value_1,
+                DataFilterCondition.GreaterThanOrEqual, 9));
+            myView.ExplodedPointsFilters.Add(new SeriesPointFilter(SeriesPointKey.Argument,
+                DataFilterCondition.NotEqual, "Others"));
+            //myView.ExplodeMode = PieExplodeMode.UseFilters;
+            //myView.ExplodedDistancePercentage = 30;
+            myView.RuntimeExploding = true;
+            myView.HeightToWidthRatio = 0.75;
+
+            // Hide the legend (if necessary).
+            pieChartControl.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+
+            // Add the chart to the form.
+            pieChartControl.Dock = DockStyle.Fill;
+            this.Controls.Add(pieChartControl);
+        }
+
+        #endregion
+
+        #region HelperMethods
+
+        public void ClearChart()
+        {
+            chartControl1.DataSource = null;
+            chartControl1.Series.Clear();
+            chartControl1.Titles.Remove(chartTitle1);
+            series1.Points.Clear();
+
+            pieChartControl.DataSource = null;
+            pieChartControl.Series.Clear();
+            pieChartControl.Titles.Remove(pieChartTitle);
+            series2.Points.Clear();
+        }
+
+        #endregion
 
     }
 }
