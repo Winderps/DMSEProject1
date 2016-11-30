@@ -18,6 +18,11 @@ namespace GUI
         private Student[] students;
         private Graph graphForm = new Graph();
         private int[] graphGrades = new int[7];
+
+        private double numCore = 0.0;
+        private double numGen = 0.0;
+        private double numElective = 0.0;
+
         public Form1()
         {
             InitializeComponent();
@@ -45,9 +50,7 @@ namespace GUI
 
         private void DisplayStudent(Student student)
         {
-            double numCore = 0.0;
-            double numGen = 0.0;
-            double numElective = 0.0;
+            
 
             foreach (Course course in student.Courses)
             {
@@ -137,39 +140,39 @@ namespace GUI
 
         private void btnPieChart_Click(object sender, EventArgs e)
         {
-            double numCore = 0.0;
-            double numGen = 0.0;
-            double numElective = 0.0;
+            //double numCore = 0.0;
+            //double numGen = 0.0;
+            //double numElective = 0.0;
             
             var id = TXTBuserinput.Text;
             var student = logic.SearchByID(students, id);
             if (student != null)
             {
-                foreach (Course course in student.Courses)
-                {
-                    switch (course.CourseType)
-                    {
-                        case "Core":
-                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                            {
-                                numCore++;
-                            }
-                            break;
-                        case "General Education":
-                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                            {
-                                numGen++;
-                            }
-                            break;
-                        case "Elective":
-                            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                            {
-                                numElective++;
-                            }
-                            break;
-                    }
+                //foreach (Course course in student.Courses)
+                //{
+                //    switch (course.CourseType)
+                //    {
+                //        case "Core":
+                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                //            {
+                //                numCore++;
+                //            }
+                //            break;
+                //        case "General Education":
+                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                //            {
+                //                numGen++;
+                //            }
+                //            break;
+                //        case "Elective":
+                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
+                //            {
+                //                numElective++;
+                //            }
+                //            break;
+                //    }
 
-                }
+                //}
                 double numIncomplete = 42.0 - numCore - numGen - numElective;
                 graphForm.CreatePieChart(numCore/42, numGen/42, numElective/42, numIncomplete/42, student.LastName);
                 graphForm.ShowDialog();
