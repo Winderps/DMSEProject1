@@ -54,6 +54,7 @@ namespace Dmse_Project_201.Core
                 .Select(c => incompleteGrades.Contains(c.Grade) ? 0 : 100)
                 .DefaultIfEmpty()
                 .Average(c => c);
+            
         }
 
 
