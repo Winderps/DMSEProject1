@@ -148,9 +148,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(128, 411);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 13);
+            this.label5.Size = new System.Drawing.Size(145, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Percent of Courses Complete";
+            this.label5.Text = "Decimal of Courses Complete";
             // 
             // label6
             // 
@@ -242,21 +242,23 @@
             // 
             // btnGraph
             // 
+            this.btnGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGraph.Location = new System.Drawing.Point(305, 56);
             this.btnGraph.Name = "btnGraph";
             this.btnGraph.Size = new System.Drawing.Size(100, 23);
             this.btnGraph.TabIndex = 18;
-            this.btnGraph.Text = "Graph Grades";
+            this.btnGraph.Text = "Grade Chart";
             this.btnGraph.UseVisualStyleBackColor = true;
             this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
             // 
             // btnPieChart
             // 
+            this.btnPieChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPieChart.Location = new System.Drawing.Point(198, 56);
             this.btnPieChart.Name = "btnPieChart";
             this.btnPieChart.Size = new System.Drawing.Size(100, 23);
             this.btnPieChart.TabIndex = 18;
-            this.btnPieChart.Text = "Graph Completion";
+            this.btnPieChart.Text = "Course Pie Chart";
             this.btnPieChart.UseVisualStyleBackColor = true;
             this.btnPieChart.Click += new System.EventHandler(this.btnPieChart_Click);
             // 

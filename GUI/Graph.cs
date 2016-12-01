@@ -146,7 +146,7 @@ namespace GUI
        
         public void CreatePieChart(double corePercent, double genPercent, double electivePercent, double incompletePercent, string name)
         {
-
+            
             pieChartControl.DataSource = null;
             pieChartControl.Series.Clear();
             pieChartControl.Titles.Remove(pieChartTitle);

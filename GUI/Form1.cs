@@ -16,7 +16,8 @@ namespace GUI
     {
         private Logic logic = new Logic();
         private Student[] students;
-        private Graph graphForm = new Graph();
+        private Graph chartForm = new Graph();
+        private Graph pieForm = new Graph();
         private int[] graphGrades = new int[7];
 
         private double numCore = 0.0;
@@ -44,13 +45,15 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("That student does not exists.");
+                NullStudent();
             }
         }
 
         private void DisplayStudent(Student student)
         {
-            
+            numGen = 0;
+            numCore = 0;
+            numElective = 0;
 
             foreach (Course course in student.Courses)
             {
@@ -94,6 +97,11 @@ namespace GUI
         }
 
 
+        private void NullStudent()
+        {
+            MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
+        }
+
         private void btnGraph_Click(object sender, EventArgs e)
         {
             Array.Clear(graphGrades, 0, graphGrades.Length);
@@ -128,58 +136,36 @@ namespace GUI
                             break;
                     }
                 }
-                graphForm.GraphStart(graphGrades[0], graphGrades[1], graphGrades[2], graphGrades[3], graphGrades[4], graphGrades[5], graphGrades[6], student.LastName);
-                graphForm.ShowDialog();
+                chartForm.GraphStart(graphGrades[0], graphGrades[1], graphGrades[2], graphGrades[3], graphGrades[4], graphGrades[5], graphGrades[6], student.LastName);
+                DisplayStudent(student);
+                chartForm.Text = "Overall Grades";
+                chartForm.ShowDialog();
+                
             }
             else
             {
-                MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
+                NullStudent();
             }
 
         }
 
         private void btnPieChart_Click(object sender, EventArgs e)
         {
-            //double numCore = 0.0;
-            //double numGen = 0.0;
-            //double numElective = 0.0;
+            
             
             var id = TXTBuserinput.Text;
             var student = logic.SearchByID(students, id);
             if (student != null)
             {
-                //foreach (Course course in student.Courses)
-                //{
-                //    switch (course.CourseType)
-                //    {
-                //        case "Core":
-                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                //            {
-                //                numCore++;
-                //            }
-                //            break;
-                //        case "General Education":
-                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                //            {
-                //                numGen++;
-                //            }
-                //            break;
-                //        case "Elective":
-                //            if (course.Grade != "F" && course.Grade != "W" && course.Grade != "I")
-                //            {
-                //                numElective++;
-                //            }
-                //            break;
-                //    }
-
-                //}
+                DisplayStudent(student);
                 double numIncomplete = 42.0 - numCore - numGen - numElective;
-                graphForm.CreatePieChart(numCore/42, numGen/42, numElective/42, numIncomplete/42, student.LastName);
-                graphForm.ShowDialog();
+                pieForm.CreatePieChart(numCore/42, numGen/42, numElective/42, numIncomplete/42, student.LastName);
+                pieForm.Text = "Complete Course Percentage";
+                pieForm.ShowDialog();
             }
             else
             {
-                MessageBox.Show("No Student Record Found, Please Input Valid Student ID");
+                NullStudent();
             }
             
         }
